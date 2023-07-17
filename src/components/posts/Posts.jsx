@@ -30,7 +30,7 @@ const Posts = () => {
   useEffect(() => {
     fetchPosts(currentPage);
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [currentPage]);
+  }, [currentPage, fetchPosts]);
 
   const handlePageChange = (selectedPage) => {
     setCurrentPage(selectedPage.selected + 1);

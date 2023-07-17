@@ -4,7 +4,6 @@ import axios from "axios";
 
 const RelatedPosts = ({ category }) => {
   const [related, setRelated] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const postsPerPage = 4;
 
@@ -27,7 +26,7 @@ const RelatedPosts = ({ category }) => {
   useEffect(() => {
     fetchPosts(currentPage);
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [currentPage, category]);
+  }, [category, fetchPosts]);
 
   return (
     <>

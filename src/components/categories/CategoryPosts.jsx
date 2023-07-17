@@ -33,7 +33,7 @@ const CategoryPosts = () => {
   useEffect(() => {
     fetchPosts(currentPage);
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [categoryId, currentPage]);
+  }, [categoryId, currentPage, fetchPosts]);
 
   const handlePageChange = (selectedPage) => {
     setCurrentPage(selectedPage.selected + 1);

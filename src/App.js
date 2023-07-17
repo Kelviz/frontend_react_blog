@@ -1,8 +1,8 @@
 import React from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 
-import { Home, PostDetail, Navbar, Search, Footer, CategoryPosts } from './components';
+import { Home, PostDetail, Navbar, CategoryPosts } from './components';
 import './App.css';
 
 function App() {
