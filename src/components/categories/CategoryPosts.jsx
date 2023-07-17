@@ -14,21 +14,24 @@ const CategoryPosts = () => {
   const [totalPages, setTotalPages] = useState(1);
   const postsPerPage = 4;
 
-  const fetchPosts = useCallback(async (page) => {
-    try {
-      const response = await axios.get(
-        `http://127.0.0.1:8000/api/categoryPosts/${categoryId}/?page=${page}`
-      );
-      setCatPosts(response.data.results);
+  const fetchPosts = useCallback(
+    async (page) => {
+      try {
+        const response = await axios.get(
+          `http://127.0.0.1:8000/api/categoryPosts/${categoryId}/?page=${page}`
+        );
+        setCatPosts(response.data.results);
 
-      const totalCount = response.data.count;
-      const totalPagesCount = Math.ceil(totalCount / postsPerPage);
-      setTotalPages(totalPagesCount);
-      console.log(totalPages);
-    } catch (error) {
-      console.error(error);
-    }
-  });
+        const totalCount = response.data.count;
+        const totalPagesCount = Math.ceil(totalCount / postsPerPage);
+        setTotalPages(totalPagesCount);
+        console.log(totalPages);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [categoryId, postsPerPage]
+  );
 
   useEffect(() => {
     fetchPosts(currentPage);

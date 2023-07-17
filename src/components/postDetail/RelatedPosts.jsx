@@ -14,7 +14,7 @@ const RelatedPosts = ({ category }) => {
     } catch (error) {
       console.error(error);
     }
-  });
+  }, []);
 
   useEffect(() => {
     fetchPosts();

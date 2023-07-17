@@ -13,19 +13,22 @@ const Posts = () => {
 
   console.log("api url");
   console.log(apiUrl);
-  const fetchPosts = useCallback(async (page) => {
-    try {
-      const response = await axios.get(`${apiUrl}/posts/?page=${page}`);
-      setPosts(response.data.results);
+  const fetchPosts = useCallback(
+    async (page) => {
+      try {
+        const response = await axios.get(`${apiUrl}/posts/?page=${page}`);
+        setPosts(response.data.results);
 
-      const totalCount = response.data.count;
-      const totalPagesCount = Math.ceil(totalCount / postsPerPage);
-      setTotalPages(totalPagesCount);
-      console.log(totalPages);
-    } catch (error) {
-      console.error(error);
-    }
-  });
+        const totalCount = response.data.count;
+        const totalPagesCount = Math.ceil(totalCount / postsPerPage);
+        setTotalPages(totalPagesCount);
+        console.log(totalPages);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [apiUrl, postsPerPage]
+  );
 
   useEffect(() => {
     fetchPosts(currentPage);
