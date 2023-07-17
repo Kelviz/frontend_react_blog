@@ -4,14 +4,12 @@ import { useParams } from "react-router-dom";
 import { FaCalendar } from "react-icons/fa";
 import moment from "moment";
 
-import RecentPost from "../recentPost/RecentPost";
 import Category from "../categories/Category";
 import carBlack from "../../assets/carBlack.jpg";
 import Author from "../author/Author";
 import NextPostDetail from "./NextPostDetail";
 import PrevPostDetail from "./PrevPostDetail";
 import RelatedPosts from "./RelatedPosts";
-import Comments from "../comment/Comments";
 import AddComment from "../comment/AddComment";
 
 const PostDetail = () => {

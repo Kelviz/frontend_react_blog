@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 
-import asus from "../../assets/asus.png";
+import carBlack from "../../assets/carBlack.jpg";
 import "./FeaturePost.css";
 
 const FeaturePost = () => {
@@ -60,7 +60,7 @@ const FeaturePost = () => {
               >
                 <img
                   src={featured.image}
-                  alt="Image"
+                  alt={featured.title}
                   className="w-full rounded-lg cover"
                 />
                 <div className="absolute w-full h-full top-0 left-0 flex items-center rounded-lg justify-center  bg-gray-700 shadow-md bg-opacity-30">
@@ -77,9 +77,9 @@ const FeaturePost = () => {
 
                     <div className="flex items-center justify-center w-full absolute bottom-2 overflow-hidden">
                       <img
-                        src={asus}
-                        alt="Image"
-                        className="w-7 h-7 mr-1 rounded-full border object-fit"
+                        src={carBlack}
+                        alt="Uche"
+                        className="w-7 h-7 mr-1 rounded-full object-fit"
                       />
 
                       <small>{featured.author_username}</small>

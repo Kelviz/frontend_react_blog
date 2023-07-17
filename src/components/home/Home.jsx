@@ -1,5 +1,4 @@
 import React from "react";
-import StickyBox from "react-sticky-box";
 
 import Posts from "../posts/Posts";
 import FeaturePost from "../featurePosts/FeaturePost";
