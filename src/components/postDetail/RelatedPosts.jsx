@@ -5,16 +5,19 @@ import axios from "axios";
 const RelatedPosts = ({ category }) => {
   const [related, setRelated] = useState([]);
 
-  const fetchPosts = useCallback(async (page) => {
-    try {
-      const response = await axios.get(
-        `http://127.0.0.1:8000/api/categoryPosts/${category}/?page=${page}`
-      );
-      setRelated(response.data.results);
-    } catch (error) {
-      console.error(error);
-    }
-  }, []);
+  const fetchPosts = useCallback(
+    async (page) => {
+      try {
+        const response = await axios.get(
+          `http://127.0.0.1:8000/api/categoryPosts/${category}/?page=${page}`
+        );
+        setRelated(response.data.results);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [category]
+  );
 
   useEffect(() => {
     fetchPosts();

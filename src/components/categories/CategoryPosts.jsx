@@ -30,7 +30,7 @@ const CategoryPosts = () => {
         console.error(error);
       }
     },
-    [categoryId, postsPerPage]
+    [categoryId, postsPerPage, totalPages]
   );
 
   useEffect(() => {
