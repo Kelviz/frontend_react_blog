@@ -1,32 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
 const RelatedPosts = ({ category }) => {
   const [related, setRelated] = useState([]);
-  const [totalPages, setTotalPages] = useState(1);
-  const postsPerPage = 4;
 
-  const fetchPosts = async (page) => {
+  const fetchPosts = useCallback(async (page) => {
     try {
       const response = await axios.get(
         `http://127.0.0.1:8000/api/categoryPosts/${category}/?page=${page}`
       );
       setRelated(response.data.results);
-
-      const totalCount = response.data.count;
-      const totalPagesCount = Math.ceil(totalCount / postsPerPage);
-      setTotalPages(totalPagesCount);
-      console.log(totalPages);
     } catch (error) {
       console.error(error);
     }
-  };
+  });
 
   useEffect(() => {
     fetchPosts();
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [category]);
+  }, [category, fetchPosts]);
 
   return (
     <>

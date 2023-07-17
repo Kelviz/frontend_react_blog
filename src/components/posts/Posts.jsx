@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import Pagination from "react-paginate";
 
@@ -13,7 +13,7 @@ const Posts = () => {
 
   console.log("api url");
   console.log(apiUrl);
-  const fetchPosts = async (page) => {
+  const fetchPosts = useCallback(async (page) => {
     try {
       const response = await axios.get(`${apiUrl}/posts/?page=${page}`);
       setPosts(response.data.results);
@@ -25,7 +25,7 @@ const Posts = () => {
     } catch (error) {
       console.error(error);
     }
-  };
+  });
 
   useEffect(() => {
     fetchPosts(currentPage);

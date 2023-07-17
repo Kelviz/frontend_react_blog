@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Pagination from "react-paginate";
@@ -14,7 +14,7 @@ const CategoryPosts = () => {
   const [totalPages, setTotalPages] = useState(1);
   const postsPerPage = 4;
 
-  const fetchPosts = async (page) => {
+  const fetchPosts = useCallback(async (page) => {
     try {
       const response = await axios.get(
         `http://127.0.0.1:8000/api/categoryPosts/${categoryId}/?page=${page}`
@@ -28,7 +28,7 @@ const CategoryPosts = () => {
     } catch (error) {
       console.error(error);
     }
-  };
+  });
 
   useEffect(() => {
     fetchPosts(currentPage);

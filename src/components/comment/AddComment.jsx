@@ -41,10 +41,8 @@ const AddComment = ({ postId }) => {
     }
 
     if (!isValidEmail(email)) {
-      {
-        setEmailError("Invalid email format");
-        return;
-      }
+      setEmailError("Invalid email format");
+      return;
     }
 
     axios
