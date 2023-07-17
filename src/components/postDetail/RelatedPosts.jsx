@@ -24,9 +24,9 @@ const RelatedPosts = ({ category }) => {
   };
 
   useEffect(() => {
-    fetchPosts(currentPage);
+    fetchPosts();
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [category, fetchPosts]);
+  }, [category]);
 
   return (
     <>
