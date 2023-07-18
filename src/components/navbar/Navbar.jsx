@@ -14,6 +14,7 @@ const Navbar = () => {
       .get("https://urch-django-4o3r3i18h-kelviz.vercel.app/api/category/")
       .then((response) => {
         setNavLinks(response.data);
+        console.log(response.data);
       })
 
       .catch((error) => {
