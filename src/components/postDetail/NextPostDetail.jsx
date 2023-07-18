@@ -11,7 +11,7 @@ const NextPostDetail = () => {
     const fetchAdjacentPosts = async () => {
       try {
         const response = await axios.get(
-          `http://127.0.0.1:8000/api/posts/${postId}/adjacent_posts/`
+          `https://urch-django-4o3r3i18h-kelviz.vercel.app/api/posts/${postId}/adjacent_posts/`
         );
         setNextPost(response.data.next);
         console.log(response.data.next);
@@ -25,7 +25,7 @@ const NextPostDetail = () => {
 
   const divStyle = nextPost
     ? {
-        backgroundImage: `url(http://127.0.0.1:8000${nextPost.image})`,
+        backgroundImage: `url(https://urch-django-4o3r3i18h-kelviz.vercel.app${nextPost.image})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",

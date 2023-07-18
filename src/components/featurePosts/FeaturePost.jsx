@@ -12,7 +12,7 @@ const FeaturePost = () => {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/api/featured/")
+      .get("https://urch-django-4o3r3i18h-kelviz.vercel.app/api/featured/")
       .then((response) => {
         setFeaturedPosts(response.data);
       })

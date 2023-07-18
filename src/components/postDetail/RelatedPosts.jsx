@@ -9,7 +9,7 @@ const RelatedPosts = ({ category }) => {
     async (page) => {
       try {
         const response = await axios.get(
-          `http://127.0.0.1:8000/api/categoryPosts/${category}/?page=${page}`
+          `https://urch-django-4o3r3i18h-kelviz.vercel.app/api/categoryPosts/${category}/?page=${page}`
         );
         setRelated(response.data.results);
       } catch (error) {

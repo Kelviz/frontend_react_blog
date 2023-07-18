@@ -8,7 +8,9 @@ const RecentPost = () => {
 
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/api/posts/?page=${page}`)
+      .get(
+        `https://urch-django-4o3r3i18h-kelviz.vercel.app/api/posts/?page=${page}`
+      )
       .then((response) => {
         console.log(response.data);
         setRecentPosts(response.data.results);

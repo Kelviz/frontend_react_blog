@@ -46,7 +46,10 @@ const AddComment = ({ postId }) => {
     }
 
     axios
-      .post("http://127.0.0.1:8000/api/add-comment/", formData)
+      .post(
+        "https://urch-django-4o3r3i18h-kelviz.vercel.app/api/add-comment/",
+        formData
+      )
       .then((response) => {
         console.log(response.data);
 
@@ -82,7 +85,9 @@ const AddComment = ({ postId }) => {
     }
 
     axios
-      .get(`http://127.0.0.1:8000/api/comments/${postId}/`)
+      .get(
+        `https://urch-django-4o3r3i18h-kelviz.vercel.app/api/comments/${postId}/`
+      )
       .then((response) => {
         setComments(response.data);
       })

@@ -9,14 +9,13 @@ const Posts = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const postsPerPage = 4;
-  const apiUrl = process.env.API_URL;
 
-  console.log("api url");
-  console.log(apiUrl);
   const fetchPosts = useCallback(
     async (page) => {
       try {
-        const response = await axios.get(`${apiUrl}/posts/?page=${page}`);
+        const response = await axios.get(
+          `https://urch-django-4o3r3i18h-kelviz.vercel.app/api/posts/?page=${page}`
+        );
         setPosts(response.data.results);
 
         const totalCount = response.data.count;
