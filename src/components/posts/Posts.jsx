@@ -26,7 +26,7 @@ const Posts = () => {
         console.error(error);
       }
     },
-    [apiUrl, postsPerPage, totalPages]
+    [postsPerPage, totalPages]
   );
 
   useEffect(() => {
