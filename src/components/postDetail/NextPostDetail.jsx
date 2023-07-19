@@ -25,7 +25,7 @@ const NextPostDetail = () => {
 
   const divStyle = nextPost
     ? {
-        backgroundImage: `url(https://urch-django-api.vercel.app${nextPost.image})`,
+        backgroundImage: 'url({nextPost.image})',
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
