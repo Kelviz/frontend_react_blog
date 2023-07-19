@@ -14,7 +14,7 @@ const Posts = () => {
     async (page) => {
       try {
         const response = await axios.get(
-          `https://urch-django-4o3r3i18h-kelviz.vercel.app/api/posts/?page=${page}`
+          `https://urch-django-api.vercel.app/api/posts/?page=${page}`
         );
         setPosts(response.data.results);
 

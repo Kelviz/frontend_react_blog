@@ -11,7 +11,7 @@ const PrevPostDetail = () => {
     const fetchAdjacentPosts = async () => {
       try {
         const response = await axios.get(
-          `https://urch-django-4o3r3i18h-kelviz.vercel.app/api/posts/${postId}/adjacent_posts/`
+          `https://urch-django-api.vercel.app/api/posts/${postId}/adjacent_posts/`
         );
         setPreviousPost(response.data.previous);
       } catch (error) {
@@ -24,7 +24,7 @@ const PrevPostDetail = () => {
 
   const divStyle = previousPost
     ? {
-        backgroundImage: `url(https://urch-django-4o3r3i18h-kelviz.vercel.app${previousPost.image})`,
+        backgroundImage: `url(https://urch-django-api.vercel.app${previousPost.image})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",

@@ -9,7 +9,7 @@ const RecentPost = () => {
   useEffect(() => {
     axios
       .get(
-        `https://urch-django-4o3r3i18h-kelviz.vercel.app/api/posts/?page=${page}`
+        `https://urch-django-api.vercel.app/api/posts/?page=${page}`
       )
       .then((response) => {
         console.log(response.data);

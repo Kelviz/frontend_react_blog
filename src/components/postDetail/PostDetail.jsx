@@ -19,7 +19,7 @@ const PostDetail = () => {
   useEffect(() => {
     axios
       .get(
-        `https://urch-django-4o3r3i18h-kelviz.vercel.app/api/posts/${postId}/`
+        `https://urch-django-api.vercel.app/api/posts/${postId}/`
       )
       .then((response) => {
         setpostContent(response.data);
