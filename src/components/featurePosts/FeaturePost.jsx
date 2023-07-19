@@ -12,7 +12,7 @@ const FeaturePost = () => {
 
   useEffect(() => {
     axios
-      .get("https://urch-django-4o3r3i18h-kelviz.vercel.app/api/featured/")
+      .get("https://urch-django-api.vercel.app/api/featured/")
       .then((response) => {
         setFeaturedPosts(response.data);
       })
