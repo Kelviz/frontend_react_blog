@@ -18,7 +18,7 @@ const CategoryPosts = () => {
     async (page) => {
       try {
         const response = await axios.get(
-          `https://urch-django-4o3r3i18h-kelviz.vercel.app/api/categoryPosts/${categoryId}/?page=${page}`
+          `https://urch-django-api.vercel.app/api/posts/categoryPosts/${categoryId}/?page=${page}`
         );
         setCatPosts(response.data.results);
 
