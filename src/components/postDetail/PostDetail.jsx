@@ -12,15 +12,15 @@ import PrevPostDetail from "./PrevPostDetail";
 import RelatedPosts from "./RelatedPosts";
 import AddComment from "../comment/AddComment";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const PostDetail = () => {
   const { postId } = useParams();
   const [postContent, setpostContent] = useState("");
 
   useEffect(() => {
     axios
-      .get(
-        `https://urch-django-4o3r3i18h-kelviz.vercel.app/api/posts/${postId}/`
-      )
+      .get(`${API_URL}/posts/${postId}/`)
       .then((response) => {
         setpostContent(response.data);
       })

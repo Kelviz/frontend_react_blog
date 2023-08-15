@@ -6,12 +6,14 @@ import axios from "axios";
 
 import "./Navbar.css";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const Navbar = () => {
   const [navLinks, setNavLinks] = useState([]);
 
   useEffect(() => {
     axios
-      .get("https://urch-django-4o3r3i18h-kelviz.vercel.app/api/category/")
+      .get(`${API_URL}/category/`)
       .then((response) => {
         setNavLinks(response.data);
         console.log(response.data);

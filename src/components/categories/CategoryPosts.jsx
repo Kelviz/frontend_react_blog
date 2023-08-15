@@ -7,6 +7,8 @@ import PostCard from "../posts/PostCard";
 import RecentPost from "../recentPost/RecentPost";
 import Category from "./Category";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const CategoryPosts = () => {
   const { categoryId } = useParams();
   const [catPosts, setCatPosts] = useState([]);
@@ -18,7 +20,7 @@ const CategoryPosts = () => {
     async (page) => {
       try {
         const response = await axios.get(
-          `https://urch-django-4o3r3i18h-kelviz.vercel.app/api/categoryPosts/${categoryId}/?page=${page}`
+          `${API_URL}/categoryPosts/${categoryId}/?page=${page}`
         );
         setCatPosts(response.data.results);
 

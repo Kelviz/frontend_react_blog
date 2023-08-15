@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Comments from "./Comments";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const AddComment = ({ postId }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -45,31 +47,26 @@ const AddComment = ({ postId }) => {
       return;
     }
 
-    axios
-      .post(
-        "https://urch-django-4o3r3i18h-kelviz.vercel.app/api/add-comment/",
-        formData
-      )
-      .then((response) => {
-        console.log(response.data);
+    axios.post(`${API_URL}/add-comment/`, formData).then((response) => {
+      console.log(response.data);
 
-        setComments((prevComments) => [...prevComments, response.data]);
+      setComments((prevComments) => [...prevComments, response.data]);
 
-        if (saveDetails) {
-          localStorage.setItem("commentName", name);
-          localStorage.setItem("commentEmail", email);
-          localStorage.setItem("saveDetails", saveDetails);
-        } else {
-          localStorage.removeItem("commentName");
-          localStorage.removeItem("commentEmail");
-          localStorage.setItem("saveDetails", saveDetails);
-        }
+      if (saveDetails) {
+        localStorage.setItem("commentName", name);
+        localStorage.setItem("commentEmail", email);
+        localStorage.setItem("saveDetails", saveDetails);
+      } else {
+        localStorage.removeItem("commentName");
+        localStorage.removeItem("commentEmail");
+        localStorage.setItem("saveDetails", saveDetails);
+      }
 
-        setBody("");
+      setBody("");
 
-        setNameError("");
-        setEmailError("");
-      });
+      setNameError("");
+      setEmailError("");
+    });
   };
 
   useEffect(() => {
@@ -85,9 +82,7 @@ const AddComment = ({ postId }) => {
     }
 
     axios
-      .get(
-        `https://urch-django-4o3r3i18h-kelviz.vercel.app/api/comments/${postId}/`
-      )
+      .get(`${API_URL}/comments/${postId}/`)
       .then((response) => {
         setComments(response.data);
       })

@@ -3,6 +3,9 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import moment from "moment";
 
+const API_URL = process.env.REACT_APP_API_URL;
+const API_IMG = process.env.REACT_APP_API_IMG;
+
 const NextPostDetail = () => {
   const { postId } = useParams();
   const [nextPost, setNextPost] = useState(null);
@@ -11,7 +14,7 @@ const NextPostDetail = () => {
     const fetchAdjacentPosts = async () => {
       try {
         const response = await axios.get(
-          `https://urch-django-4o3r3i18h-kelviz.vercel.app/api/posts/${postId}/adjacent_posts/`
+          `${API_URL}/posts/${postId}/adjacent_posts/`
         );
         setNextPost(response.data.next);
         console.log(response.data.next);
@@ -25,7 +28,7 @@ const NextPostDetail = () => {
 
   const divStyle = nextPost
     ? {
-        backgroundImage: `url(https://urch-django-4o3r3i18h-kelviz.vercel.app${nextPost.image})`,
+        backgroundImage: `url(${API_IMG}${nextPost.image})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",

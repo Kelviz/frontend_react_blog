@@ -7,12 +7,14 @@ import moment from "moment";
 import carBlack from "../../assets/carBlack.jpg";
 import "./FeaturePost.css";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const FeaturePost = () => {
   const [featuredPosts, setFeaturedPosts] = useState([]);
 
   useEffect(() => {
     axios
-      .get("https://urch-django-4o3r3i18h-kelviz.vercel.app/api/featured/")
+      .get(`${API_URL}/featured/`)
       .then((response) => {
         setFeaturedPosts(response.data);
       })

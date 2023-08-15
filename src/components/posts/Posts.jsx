@@ -4,6 +4,8 @@ import Pagination from "react-paginate";
 
 import PostCard from "./PostCard";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const Posts = () => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -13,9 +15,7 @@ const Posts = () => {
   const fetchPosts = useCallback(
     async (page) => {
       try {
-        const response = await axios.get(
-          `https://urch-django-4o3r3i18h-kelviz.vercel.app/api/posts/?page=${page}`
-        );
+        const response = await axios.get(`${API_URL}/posts/?page=${page}`);
         setPosts(response.data.results);
 
         const totalCount = response.data.count;

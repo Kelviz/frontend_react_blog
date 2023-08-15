@@ -2,6 +2,8 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const RelatedPosts = ({ category }) => {
   const [related, setRelated] = useState([]);
 
@@ -9,7 +11,7 @@ const RelatedPosts = ({ category }) => {
     async (page) => {
       try {
         const response = await axios.get(
-          `https://urch-django-4o3r3i18h-kelviz.vercel.app/api/categoryPosts/${category}/?page=${page}`
+          `${API_URL}/categoryPosts/${category}/?page=${page}`
         );
         setRelated(response.data.results);
       } catch (error) {
