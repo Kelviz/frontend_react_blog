@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { FaCalendar } from "react-icons/fa";
+import { TailSpin } from "react-loader-spinner";
+
 import moment from "moment";
+import parse from "html-react-parser";
 
 import Category from "../categories/Category";
 import carBlack from "../../assets/carBlack.jpg";
@@ -31,12 +34,16 @@ const PostDetail = () => {
   }, [postId]);
 
   if (!postContent) {
-    return <div>Loading...</div>;
+    return (
+      <div className="mt-9">
+        <TailSpin color="#007BFF" height={50} width={50} />
+      </div>
+    );
   }
 
   return (
     <>
-      <div className="w-full mt-4 flex flex-col  lg:flex-row lg:justify-between lg:items-start justify-center items-center">
+      <div className="w-full mt-4 flex flex-col p-6  lg:flex-row lg:justify-between lg:items-start justify-center items-center">
         <div className="lg:w-[64%] sm:w-[94%] flex justify-center items-center flex-col">
           <div className="w-full mt-4  bg-white flex flex-col p-7 rounded-[10px] shadow-lg">
             <img
@@ -68,7 +75,7 @@ const PostDetail = () => {
             </h1>
 
             <div className="w-full text-black text-left mt-8">
-              <p>{postContent.body}</p>
+              <p>{parse(postContent.body)}</p>
             </div>
           </div>
 
@@ -81,7 +88,7 @@ const PostDetail = () => {
           <AddComment postId={postId} />
         </div>
 
-        <div className="lg:w-[30%] sm:w-[94%]  md:w-[74%] mt-4 sidebar sticky top-1">
+        <div className="lg:w-[30%] w-full md:p-5 sm:p-6 mt-4 sidebar sticky top-1">
           <RelatedPosts category={postContent.category} />
           <Category />
         </div>

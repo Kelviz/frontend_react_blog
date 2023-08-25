@@ -1,41 +1,45 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import Pagination from "react-paginate";
 import { TailSpin } from "react-loader-spinner";
 
-import PostCard from "../posts/PostCard";
+import Category from "../categories/Category";
 import RecentPost from "../recentPost/RecentPost";
-import Category from "./Category";
+import PostCard from "../posts/PostCard";
 
-const API_URL = process.env.REACT_APP_API_URL;
-
-const CategoryPosts = () => {
-  const { categoryId } = useParams();
-  const [catPosts, setCatPosts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0);
+const SearchPost = ({ search }) => {
+  const [posts, setPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 4;
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setCurrentPage(0);
-  }, [categoryId]);
+  }, [search]);
 
-  const fetchPosts = async (categoryId) => {
-    const response = await axios.get(`${API_URL}/categoryPosts/${categoryId}/`);
-    setCatPosts(response.data);
-    setIsLoading(false);
+  const fetchSearchedPost = async (search) => {
+    if (search) {
+      try {
+        // Fetch the total count to calculate total pages
+        const API_URL = `${process.env.REACT_APP_API_URL}/posts/?search=${search}`;
+        const response = await axios.get(API_URL);
+        setPosts(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        // Handle errors here
+      }
+    }
   };
 
   useEffect(() => {
-    fetchPosts(categoryId);
-  }, [categoryId]);
+    fetchSearchedPost(search);
+  }, [search]);
 
-  const postsPerPage = 4;
-  console.log(catPosts);
   const indexOfLastPost = (currentPage + 1) * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const displayedPosts = catPosts.slice(indexOfFirstPost, indexOfLastPost);
-  const pageCounts = Math.ceil(catPosts.length / postsPerPage);
+  const displayedPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  const pageCounts = Math.ceil(posts.length / postsPerPage);
 
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);
@@ -53,7 +57,7 @@ const CategoryPosts = () => {
             </div>
           ) : displayedPosts.length === 0 ? (
             <div className="loader text-black w-full text-center mt-[9rem] flex justify-center items-center">
-              <p>No posts available.</p>
+              <p>No result found for '{search}'.</p>
             </div>
           ) : (
             displayedPosts.map((post) => (
@@ -87,7 +91,6 @@ const CategoryPosts = () => {
             />
           )}
         </div>
-
         <div className="lg:w-[30%] sm:w-[97%] md:w-[90%] container-sm mt-4 sidebar sticky top-1">
           <RecentPost />
           <Category />
@@ -97,4 +100,4 @@ const CategoryPosts = () => {
   );
 };
 
-export default CategoryPosts;
+export default SearchPost;

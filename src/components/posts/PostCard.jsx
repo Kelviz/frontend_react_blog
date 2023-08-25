@@ -37,7 +37,7 @@ const PostCard = ({ post }) => {
         </div>
       </div>
 
-      <div className="mt-4 w-[80%] text-gray-700 text-[19px] text-center">
+      <div className="mt-4 w-[80%] text-gray-700 text-[19px] truncated-text text-center">
         <p>{post.excerpt}</p>
       </div>
 

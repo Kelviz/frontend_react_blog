@@ -1,19 +1,38 @@
+.app__navbar-logo h1 {
+  font-family: "Great Vibes", cursive;
+  color: black;
+}
+
 .app__navbar-menu svg {
   width: 30px;
   height: 30px;
   cursor: pointer;
+  color: #000;
 }
 
-.app__navbar-menu div {
-  background: url("../../assets/menu-bg.png");
+.app__small-menu div {
+  background: #fff;
   background-size: "cover";
   background-position: "center";
   background-repeat: "repeat";
+  color: #000;
 }
 
 .app__navbar-menu div svg {
   width: 27px;
   height: 27px;
-  color: wheat;
+  color: rgb(12, 12, 12);
   margin-top: 0.7rem;
+}
+
+.app__navbar-links {
+  background: rgb(223, 52, 137);
+}
+
+.active-link {
+  background-color: rgba(15, 15, 15, 0.164);
+}
+
+.app__small-menu-active-link {
+  color: rgb(223, 52, 137);
 }

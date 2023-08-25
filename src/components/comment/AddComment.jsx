@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Comments from "./Comments";
+import { TailSpin } from "react-loader-spinner";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -12,6 +13,7 @@ const AddComment = ({ postId }) => {
   const [emailError, setEmailError] = useState("");
   const [saveDetails, setSaveDetails] = useState(false);
   const [comments, setComments] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const savedName = localStorage.getItem("commentName");
@@ -85,6 +87,7 @@ const AddComment = ({ postId }) => {
       .get(`${API_URL}/comments/${postId}/`)
       .then((response) => {
         setComments(response.data);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error(error);
@@ -176,7 +179,13 @@ const AddComment = ({ postId }) => {
       </div>
 
       <div className="w-full">
-        <Comments comments={comments} />
+        {isLoading ? (
+          <div className="loader text-black w-full text-center mt-[9rem] flex justify-center items-center">
+            <TailSpin color="#007BFF" height={30} width={30} />
+          </div>
+        ) : (
+          <Comments comments={comments} />
+        )}
       </div>
     </>
   );

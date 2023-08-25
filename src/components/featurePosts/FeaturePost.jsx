@@ -1,106 +1,76 @@
-import React, { useRef, useState, useEffect } from "react";
-import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import moment from "moment";
-
-import carBlack from "../../assets/carBlack.jpg";
+import { FaCalendar } from "react-icons/fa";
+import { TailSpin } from "react-loader-spinner";
 import "./FeaturePost.css";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 const FeaturePost = () => {
   const [featuredPosts, setFeaturedPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get(`${API_URL}/featured/`)
-      .then((response) => {
-        setFeaturedPosts(response.data);
+    fetch(`${API_URL}/featured/`)
+      .then((response) => response.json())
+      .then((data) => {
+        setFeaturedPosts(data);
+        setIsLoading(false);
       })
 
-      .catch((error) => {
-        console.error(error);
-      });
+      .catch((error) => console.error("Error fetching data:", error));
   }, []);
-
-  const containerRef = useRef(null);
-
-  const handleLeftArrowClick = () => {
-    if (containerRef.current) {
-      containerRef.current.scrollLeft -= 200; // Adjust the scroll amount as needed
-    }
-  };
-
-  const handleRightArrowClick = () => {
-    if (containerRef.current) {
-      containerRef.current.scrollLeft += 200; // Adjust the scroll amount as needed
-    }
-  };
 
   return (
     <>
-      <div className="w-full relative flex justify-start items-center">
-        <div className="button-container left-button">
-          <button
-            className="bg-pink-400 text-white-600 px-3 py-3 rounded-full font-bold z-10 lg:left-[9vw] left-[1vw]"
-            onClick={handleLeftArrowClick}
-          >
-            <HiChevronLeft />
-          </button>
-        </div>
+      <div className="w-full flex-col justify-center items-center">
+        {isLoading ? (
+          <div className="loader text-black w-full text-center mt-[9rem] flex justify-center items-center">
+            <TailSpin color="#007BFF" height={30} width={30} />
+          </div>
+        ) : featuredPosts.length === 0 ? (
+          <div className="loader text-black w-full text-center mt-[9rem] flex justify-center items-center">
+            <p>No posts available.</p>
+          </div>
+        ) : (
+          <div className="w-full flex justify-start items-center feature-container">
+            {featuredPosts.map((post) => (
+              <div className="flex  justify-start items-start disa">
+                <Link
+                  to={`/post/${post.id}`}
+                  className="w-full relative flex-col justify-center items-center"
+                >
+                  <img src={post.image} alt={post.title} className="w-full" />
+                  <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b opacity-50 from-gray-500 via-gray-700 to-black" />
+                  <div className=" w-full h-full font-bold absolute top-0 flex-col justify-center text-center items-center">
+                    <div className="w-full h-full flex flex-col justify-center px-6 feature-post_text items-center">
+                      <div className="w-full flex  justify-start items-start ">
+                        <p className="mb-6  w-auto text-left border-2 py-2 px-4 border-pink-600 rounded-full">
+                          {post.category.name}
+                        </p>
+                      </div>
 
-        <div
-          className="overflow-x-auto no-scrollbar flex justify-start items-center w-full"
-          ref={containerRef}
-        >
-          <div className="flex justify-start items-center w-full [&>div]:flex-shrink-0">
-            {featuredPosts.map((featured) => (
-              <div
-                className="flex lg:w-[210px] w-[280px] h-72 min-w-0 m-3 relative rounded-lg"
-                key={featured.id}
-              >
-                <img
-                  src={featured.image}
-                  alt={featured.title}
-                  className="w-full rounded-lg cover"
-                />
-                <div className="absolute w-full h-full top-0 left-0 flex items-center rounded-lg justify-center  bg-gray-700 shadow-md bg-opacity-30">
-                  <Link
-                    to={`/post/${featured.id}`}
-                    className="w-full h-full flex flex-col rounded-lg items-center justify-center p-2 text-center font-bold"
-                  >
-                    <small className="mb-2">
-                      {moment(featured.created).format("MMM DD, YYYY")}
-                    </small>
-                    <p className="mt-2 text-shadow font-semibold lg:text-2xl text-[20px]">
-                      {featured.title}
-                    </p>
+                      <h1 className="w-full truncated-title h-[70px] text-[20px] text-left hover:text-pink-700 ">
+                        {post.title}
+                      </h1>
+                      <p className="w-full my-6 truncated-text text-[14px] text-left">
+                        {post.excerpt}
+                      </p>
 
-                    <div className="flex items-center justify-center w-full absolute bottom-2 overflow-hidden">
-                      <img
-                        src={carBlack}
-                        alt="Uche"
-                        className="w-7 h-7 mr-1 rounded-full object-fit"
-                      />
-
-                      <small>{featured.author_username}</small>
+                      <div className="flex w-full justify-start items center hover:text-pink-700 ">
+                        <FaCalendar />
+                        <p className="text-left ml-2">
+                          {moment(post.created).format("MMM DD, YYYY")}
+                        </p>
+                      </div>
                     </div>
-                  </Link>
-                </div>
+                  </div>
+                </Link>
               </div>
             ))}
           </div>
-
-          <div className="button-container right-button">
-            <button
-              className="bg-pink-400 text-white-600 px-3 py-3 rounded-full font-bold z-10 lg:right-[9vw] right-[1vw]"
-              onClick={handleRightArrowClick}
-            >
-              <HiChevronRight />
-            </button>
-          </div>
-        </div>
+        )}
       </div>
     </>
   );

@@ -7,7 +7,7 @@
 }
 
 .app__container {
-  width: 90%;
+  width: 100%;
 
   display: flex;
   flex-direction: column;
@@ -20,27 +20,21 @@
   width: 100%;
 }
 
-@media screen and (max-width: 1022px) {
-  .featured-post {
-    width: 74%;
-  }
+.footer {
+  background: rgb(44, 44, 44);
+  margin-top: 5rem;
 }
 
-@media screen and (max-width: 766px) {
-  .featured-post {
-    width: 94%;
-  }
-}
-
-@media screen and (max-width: 638px) {
-  .featured-post {
-    width: 100%;
-  }
+.footer h2 {
+  font-size: 17px;
+  font-size: 18px;
+  height: 30px;
+  font-weight: bold;
+  margin-bottom: 1rem;
 }
 
 @media screen and (max-width: 1023px) {
   .app__container {
     width: 100%;
-    padding: 1rem;
   }
 }
