@@ -5,6 +5,8 @@ import { TailSpin } from "react-loader-spinner";
 
 import PostCard from "./PostCard";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const Posts = () => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -13,8 +15,7 @@ const Posts = () => {
 
   const fetchPosts = async () => {
     try {
-      let API_URL = process.env.REACT_APP_API_URL + `/posts`;
-      const response = await axios.get(`${API_URL}`);
+      const response = await axios.get(`${API_URL}/posts/`);
       setPosts(response.data);
       setIsLoading(false);
     } catch (error) {
