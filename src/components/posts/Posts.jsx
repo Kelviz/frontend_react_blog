@@ -13,7 +13,7 @@ const Posts = () => {
 
   const fetchPosts = async () => {
     try {
-      let API_URL = process.env.REACT_APP_API_URL + `/posts`;
+      let API_URL = process.env.REACT_APP_API_URL + `/posts/`;
       const response = await axios.get(`${API_URL}`);
       setPosts(response.data);
       setIsLoading(false);
