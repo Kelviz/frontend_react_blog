@@ -28,7 +28,7 @@ const NextPostDetail = () => {
 
   const divStyle = nextPost
     ? {
-        backgroundImage: `url(${API_IMG}${nextPost.image})`,
+        backgroundImage: `url(${nextPost.image})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -47,7 +47,7 @@ const NextPostDetail = () => {
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b opacity-50 from-gray-400 via-gray-700 to-black rounded-lg" />
           <div className="w-full h-full flex flex-col justify-center items-center font-bold absolute">
             <small>{moment(nextPost.created).format("MMM DD, YYYY")}</small>
-            <h1 className="text-[24px]">{nextPost.title}</h1>
+            <h1 className="text-[24px] p-2">{nextPost.title}</h1>
           </div>
 
           <div className="absolute right-1 bottom-3 w-10 h-10 bg-pink-500 flex items-center justify-center rounded-full arrow-btn">

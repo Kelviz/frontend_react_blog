@@ -27,6 +27,7 @@ const CategoryPosts = () => {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     fetchPosts(categoryId);
   }, [categoryId]);
 
