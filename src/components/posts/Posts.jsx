@@ -14,14 +14,10 @@ const Posts = () => {
   const postsPerPage = 4;
 
   const fetchPosts = async () => {
-    try {
-      const response = await axios.get(`${API_URL}/posts/`);
-      setPosts(response.data);
-      console.log("posts:", posts);
-      setIsLoading(false);
-    } catch (error) {
-      console.error(error);
-    }
+    const response = await axios.get(`${API_URL}/posts/`);
+    setPosts(response.data);
+    console.log("posts:", posts);
+    setIsLoading(false);
   };
 
   useEffect(() => {
