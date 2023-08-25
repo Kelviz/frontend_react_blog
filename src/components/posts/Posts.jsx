@@ -25,7 +25,7 @@ const Posts = () => {
   };
 
   useEffect(() => {
-    fetchPosts(currentPage);
+    fetchPosts();
   }, [currentPage]);
 
   const indexOfLastPost = (currentPage + 1) * postsPerPage;
