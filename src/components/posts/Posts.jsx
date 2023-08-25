@@ -9,7 +9,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const postsPerPage = 4;
 
